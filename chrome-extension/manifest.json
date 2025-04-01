@@ -1,0 +1,52 @@
+{
+  "name": "TempMailGuard",
+  "version": "1.0.0",
+  "description": "Detect temporary email addresses in real-time",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "notifications",
+    "identity"
+  ],
+  "host_permissions": [
+    "http://localhost:*/*",
+    "https://*.replit.app/*",
+    "https://*.repl.co/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "oauth2": {
+    "client_id": "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/userinfo.email"]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["images/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
